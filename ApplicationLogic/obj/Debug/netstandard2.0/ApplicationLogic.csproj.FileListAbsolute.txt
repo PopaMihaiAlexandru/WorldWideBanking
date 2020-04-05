@@ -1,0 +1,8 @@
+C:\Users\Vioeu\source\repos\BankingApp\ApplicationLogic\bin\Debug\netstandard2.0\ApplicationLogic.deps.json
+C:\Users\Vioeu\source\repos\BankingApp\ApplicationLogic\bin\Debug\netstandard2.0\ApplicationLogic.dll
+C:\Users\Vioeu\source\repos\BankingApp\ApplicationLogic\bin\Debug\netstandard2.0\ApplicationLogic.pdb
+C:\Users\Vioeu\source\repos\BankingApp\ApplicationLogic\obj\Debug\netstandard2.0\ApplicationLogic.csprojAssemblyReference.cache
+C:\Users\Vioeu\source\repos\BankingApp\ApplicationLogic\obj\Debug\netstandard2.0\ApplicationLogic.AssemblyInfoInputs.cache
+C:\Users\Vioeu\source\repos\BankingApp\ApplicationLogic\obj\Debug\netstandard2.0\ApplicationLogic.AssemblyInfo.cs
+C:\Users\Vioeu\source\repos\BankingApp\ApplicationLogic\obj\Debug\netstandard2.0\ApplicationLogic.dll
+C:\Users\Vioeu\source\repos\BankingApp\ApplicationLogic\obj\Debug\netstandard2.0\ApplicationLogic.pdb
