@@ -4,14 +4,14 @@ using System.Text;
 
 namespace ApplicationLogic.DataModel
 {
+    public enum TransactionStatus
+    {
+        Processing,
+        Approved,
+        Declined
+    }
     public class Transaction
     {
-        public enum TransactionStatus
-        {
-            Processing,
-            Approved,
-            Declined
-        }
         public Guid TransactionID { get; set; }
         public string SenderIBAN { get; set; }
         public string RecipentIBAN { get; set; }
