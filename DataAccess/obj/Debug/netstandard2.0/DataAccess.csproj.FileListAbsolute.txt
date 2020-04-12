@@ -1,0 +1,22 @@
+C:\Users\Vioeu\source\repos\BankingApp\DataAccess\bin\Debug\netstandard2.0\DataAccess.deps.json
+C:\Users\Vioeu\source\repos\BankingApp\DataAccess\bin\Debug\netstandard2.0\DataAccess.dll
+C:\Users\Vioeu\source\repos\BankingApp\DataAccess\bin\Debug\netstandard2.0\ApplicationLogic.dll
+C:\Users\Vioeu\source\repos\BankingApp\DataAccess\bin\Debug\netstandard2.0\ApplicationLogic.pdb
+C:\Users\Vioeu\source\repos\BankingApp\DataAccess\obj\Debug\netstandard2.0\DataAccess.csprojAssemblyReference.cache
+C:\Users\Vioeu\source\repos\BankingApp\DataAccess\obj\Debug\netstandard2.0\DataAccess.AssemblyInfoInputs.cache
+C:\Users\Vioeu\source\repos\BankingApp\DataAccess\obj\Debug\netstandard2.0\DataAccess.AssemblyInfo.cs
+C:\Users\Vioeu\source\repos\BankingApp\DataAccess\obj\Debug\netstandard2.0\DataAccess.csproj.CopyComplete
+C:\Users\Vioeu\source\repos\BankingApp\DataAccess\bin\Debug\netstandard2.0\DataAccess.pdb
+C:\Users\Vioeu\source\repos\BankingApp\DataAccess\obj\Debug\netstandard2.0\DataAccess.dll
+C:\Users\Vioeu\source\repos\BankingApp\DataAccess\obj\Debug\netstandard2.0\DataAccess.pdb
+C:\Users\Serban Elyan\Documents\GitHub\WorldWideBankingApp\DataAccess\bin\Debug\netstandard2.0\DataAccess.deps.json
+C:\Users\Serban Elyan\Documents\GitHub\WorldWideBankingApp\DataAccess\bin\Debug\netstandard2.0\DataAccess.dll
+C:\Users\Serban Elyan\Documents\GitHub\WorldWideBankingApp\DataAccess\bin\Debug\netstandard2.0\DataAccess.pdb
+C:\Users\Serban Elyan\Documents\GitHub\WorldWideBankingApp\DataAccess\bin\Debug\netstandard2.0\ApplicationLogic.dll
+C:\Users\Serban Elyan\Documents\GitHub\WorldWideBankingApp\DataAccess\bin\Debug\netstandard2.0\ApplicationLogic.pdb
+C:\Users\Serban Elyan\Documents\GitHub\WorldWideBankingApp\DataAccess\obj\Debug\netstandard2.0\DataAccess.csprojAssemblyReference.cache
+C:\Users\Serban Elyan\Documents\GitHub\WorldWideBankingApp\DataAccess\obj\Debug\netstandard2.0\DataAccess.AssemblyInfoInputs.cache
+C:\Users\Serban Elyan\Documents\GitHub\WorldWideBankingApp\DataAccess\obj\Debug\netstandard2.0\DataAccess.AssemblyInfo.cs
+C:\Users\Serban Elyan\Documents\GitHub\WorldWideBankingApp\DataAccess\obj\Debug\netstandard2.0\DataAccess.csproj.CopyComplete
+C:\Users\Serban Elyan\Documents\GitHub\WorldWideBankingApp\DataAccess\obj\Debug\netstandard2.0\DataAccess.dll
+C:\Users\Serban Elyan\Documents\GitHub\WorldWideBankingApp\DataAccess\obj\Debug\netstandard2.0\DataAccess.pdb
