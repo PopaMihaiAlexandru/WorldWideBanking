@@ -33,8 +33,10 @@ namespace BankingApp
             var connection = @"Server=.\SERBANELYAN;Database=Bank;Trusted_Connection=True;ConnectRetryCount=0";
             services.AddDbContext<BankDbContext>
                 (options => options.UseSqlServer(connection));
+            services.AddDbContext<ApplicationDbContext>
+                (options => options.UseSqlServer(connection));
             services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true)
-                .AddEntityFrameworkStores<BankDbContext>();
+                .AddEntityFrameworkStores<ApplicationDbContext>();
 
             services.AddRazorPages();
         }
