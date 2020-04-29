@@ -18,7 +18,6 @@ C:\Users\peris\Desktop\BankingApp\ApplicationLogic\obj\Debug\netstandard2.0\Appl
 C:\Users\peris\Desktop\WorldWideBanking\ApplicationLogic\bin\Debug\netstandard2.0\ApplicationLogic.deps.json
 C:\Users\peris\Desktop\WorldWideBanking\ApplicationLogic\bin\Debug\netstandard2.0\ApplicationLogic.dll
 C:\Users\peris\Desktop\WorldWideBanking\ApplicationLogic\bin\Debug\netstandard2.0\ApplicationLogic.pdb
-C:\Users\peris\Desktop\WorldWideBanking\ApplicationLogic\obj\Debug\netstandard2.0\ApplicationLogic.csprojAssemblyReference.cache
 C:\Users\peris\Desktop\WorldWideBanking\ApplicationLogic\obj\Debug\netstandard2.0\ApplicationLogic.csproj.CoreCompileInputs.cache
 C:\Users\peris\Desktop\WorldWideBanking\ApplicationLogic\obj\Debug\netstandard2.0\ApplicationLogic.AssemblyInfoInputs.cache
 C:\Users\peris\Desktop\WorldWideBanking\ApplicationLogic\obj\Debug\netstandard2.0\ApplicationLogic.AssemblyInfo.cs
