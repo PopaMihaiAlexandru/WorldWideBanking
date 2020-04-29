@@ -1,0 +1,12 @@
+C:\Users\peris\Desktop\WorldWideBanking\DataAccess\bin\Debug\netstandard2.0\DataAccess.deps.json
+C:\Users\peris\Desktop\WorldWideBanking\DataAccess\bin\Debug\netstandard2.0\DataAccess.dll
+C:\Users\peris\Desktop\WorldWideBanking\DataAccess\bin\Debug\netstandard2.0\DataAccess.pdb
+C:\Users\peris\Desktop\WorldWideBanking\DataAccess\bin\Debug\netstandard2.0\ApplicationLogic.dll
+C:\Users\peris\Desktop\WorldWideBanking\DataAccess\bin\Debug\netstandard2.0\ApplicationLogic.pdb
+C:\Users\peris\Desktop\WorldWideBanking\DataAccess\obj\Debug\netstandard2.0\DataAccess.csprojAssemblyReference.cache
+C:\Users\peris\Desktop\WorldWideBanking\DataAccess\obj\Debug\netstandard2.0\DataAccess.csproj.CoreCompileInputs.cache
+C:\Users\peris\Desktop\WorldWideBanking\DataAccess\obj\Debug\netstandard2.0\DataAccess.AssemblyInfoInputs.cache
+C:\Users\peris\Desktop\WorldWideBanking\DataAccess\obj\Debug\netstandard2.0\DataAccess.AssemblyInfo.cs
+C:\Users\peris\Desktop\WorldWideBanking\DataAccess\obj\Debug\netstandard2.0\DataAccess.csproj.CopyComplete
+C:\Users\peris\Desktop\WorldWideBanking\DataAccess\obj\Debug\netstandard2.0\DataAccess.dll
+C:\Users\peris\Desktop\WorldWideBanking\DataAccess\obj\Debug\netstandard2.0\DataAccess.pdb

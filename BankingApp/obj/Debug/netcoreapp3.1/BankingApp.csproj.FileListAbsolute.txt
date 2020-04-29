@@ -387,3 +387,13 @@ C:\Users\peris\Desktop\BankingApp\BankingApp\obj\Debug\netcoreapp3.1\BankingApp.
 C:\Users\peris\Desktop\BankingApp\BankingApp\obj\Debug\netcoreapp3.1\BankingApp.pdb
 C:\Users\peris\Desktop\BankingApp\BankingApp\obj\Debug\netcoreapp3.1\BankingApp.genruntimeconfig.cache
 C:\Users\peris\Desktop\BankingApp\BankingApp\bin\Debug\netcoreapp3.1\System.Text.Json.dll
+C:\Users\peris\Desktop\WorldWideBanking\BankingApp\obj\Debug\netcoreapp3.1\BankingApp.csprojAssemblyReference.cache
+C:\Users\peris\Desktop\WorldWideBanking\BankingApp\obj\Debug\netcoreapp3.1\BankingApp.csproj.CoreCompileInputs.cache
+C:\Users\peris\Desktop\WorldWideBanking\BankingApp\obj\Debug\netcoreapp3.1\BankingApp.MvcApplicationPartsAssemblyInfo.cs
+C:\Users\peris\Desktop\WorldWideBanking\BankingApp\obj\Debug\netcoreapp3.1\BankingApp.MvcApplicationPartsAssemblyInfo.cache
+C:\Users\peris\Desktop\WorldWideBanking\BankingApp\obj\Debug\netcoreapp3.1\BankingApp.RazorAssemblyInfo.cache
+C:\Users\peris\Desktop\WorldWideBanking\BankingApp\obj\Debug\netcoreapp3.1\BankingApp.RazorAssemblyInfo.cs
+C:\Users\peris\Desktop\WorldWideBanking\BankingApp\obj\Debug\netcoreapp3.1\BankingApp.AssemblyInfoInputs.cache
+C:\Users\peris\Desktop\WorldWideBanking\BankingApp\obj\Debug\netcoreapp3.1\BankingApp.AssemblyInfo.cs
+C:\Users\peris\Desktop\WorldWideBanking\BankingApp\obj\Debug\netcoreapp3.1\BankingApp.dll
+C:\Users\peris\Desktop\WorldWideBanking\BankingApp\obj\Debug\netcoreapp3.1\BankingApp.pdb

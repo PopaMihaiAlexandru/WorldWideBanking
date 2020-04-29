@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "Bk0QNczjGH450UhUMvbcP38lypmLS0lyJO1q44b2amWWyDRm+iUjesH+zDJEZK2l+JcqSkhWVWXcHdnzSbsndQ==",
+  "dgSpecHash": "Shjai3op0yiavys1zPXrkz0Ic141kfy4D+bNS3YrTfjRNt3uhRz5fCUSzRp5qllQ6dNnf3hHXbROeuFjuUMNGw==",
   "success": true,
-  "projectFilePath": "C:\\Users\\peris\\Desktop\\BankingApp\\ApplicationLogic\\ApplicationLogic.csproj",
+  "projectFilePath": "C:\\Users\\peris\\Desktop\\WorldWideBanking\\ApplicationLogic\\ApplicationLogic.csproj",
   "expectedPackageFiles": [
     "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder\\microsoft.netcore.platforms\\1.1.0\\microsoft.netcore.platforms.1.1.0.nupkg.sha512",
     "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder\\netstandard.library\\2.0.3\\netstandard.library.2.0.3.nupkg.sha512"
