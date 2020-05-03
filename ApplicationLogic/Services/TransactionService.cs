@@ -14,21 +14,21 @@ namespace ApplicationLogic.Services
         {
             this.transactionRepository = transactionRepository;
         }
-        public Transaction GetTransactionByUserId(string userId)
+        public Transaction GetTransactionByTransactionId(string transactionId)
         {
-            Guid guidUserId = Guid.Empty;
-            Guid.TryParse(userId, out guidUserId);
+            Guid guidTransactionId = Guid.Empty;
+            Guid.TryParse(transactionId, out guidTransactionId);
 
-            if (guidUserId == Guid.Empty)
+            if (guidTransactionId == Guid.Empty)
             {
                 throw new Exception("");
             }
 
-            var transaction = transactionRepository.GetTransactionByUserId(guidUserId);
+            var transaction = transactionRepository.GetTransactionByTransactionId(guidTransactionId);
 
             if (transaction == null)
             {
-                //throw new TransactionNotFoundException(transaction.Id);
+                //throw new ClientNotFoundException(client.Id);
             }
 
             return transaction;

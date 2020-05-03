@@ -1,51 +1,54 @@
 ﻿using ApplicationLogic.Abstractions;
 using ApplicationLogic.DataModel;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using System.Transactions;
+
 
 namespace DataAccess.Repositories
 {
-    public class TransactionRepository : ITransactionRepository 
+    public class TransactionRepository : BaseRepository<Transaction>, ITransactionRepository
     {
+        private BankDbContext _context;
         public TransactionRepository(BankDbContext dbContext) : base(dbContext)
         {
-
+            this._context = dbContext;
         }
 
-        public ApplicationLogic.DataModel.Transaction Add(ApplicationLogic.DataModel.Transaction itemToAdd)
+        public IEnumerable<Transaction> GetAll()
         {
-            throw new NotImplementedException();
+            return _context.Transactions.ToList();
         }
 
-        public bool Delete(ApplicationLogic.DataModel.Transaction itemToDelete)
+        public Transaction GetTransactionByTransactionId(Guid transactionId)
         {
-            throw new NotImplementedException();
+            var transaction = dbContext.Transactions
+                         .Where(t => t.TransactionID == transactionId)
+                         .SingleOrDefault();
+            return transaction;
         }
 
-        public IEnumerable<ApplicationLogic.DataModel.Transaction> GetAll()
+        private bool disposed = false;
+
+        protected virtual void Dispose(bool disposing)
         {
-            throw new NotImplementedException();
-        }
-
-        public System.Transactions.Transaction GetTransactionByUserId(Guid userId)
+            if (!disposed)
             {
-                var transaction = dbContext.Transactions
-                             .Where(t => t.TransactionID == userId)
-                             .SingleOrDefault();
-                return transaction;
-            }
+                if (disposing)
+                {
+                    _context.Dispose();
+                }
 
-        public ApplicationLogic.DataModel.Transaction Update(ApplicationLogic.DataModel.Transaction itemToUpdate)
-        {
-            throw new NotImplementedException();
+                this.disposed = true;
+            }
         }
 
-        Client ITransactionRepository.GetTransactionByUserId(Guid userId)
+        public void Dispose()
         {
-            throw new NotImplementedException();
+            Dispose(true);
+            GC.SuppressFinalize(this);
         }
     }
 }
