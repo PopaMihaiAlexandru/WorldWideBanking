@@ -20,6 +20,25 @@ namespace ApplicationLogic.DataModel
         public string Mail { get; set; }
         public ICollection<Account> Accounts { get; set; }
 
-
+        public static Client Create(string name, string surname, string address, string postalCode, string CNP,
+            string country, string city, string district, string phoneNumber, string mail, ICollection<Account> accounts)
+        {
+            Client client = new Client
+            {
+                ClientID = Guid.NewGuid(),
+                Name = name,
+                Surname = surname,
+                Address = address,
+                PostalCode = postalCode,
+                CNP = CNP,
+                Country = country,
+                City = city,
+                District = district,
+                PhoneNumber = phoneNumber,
+                Mail = mail,
+                Accounts = accounts
+            };
+            return client;
+        }
     }
 }
