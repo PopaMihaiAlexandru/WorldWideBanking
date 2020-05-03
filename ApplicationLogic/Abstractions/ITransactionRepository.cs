@@ -5,8 +5,12 @@ using System.Text;
 
 namespace ApplicationLogic.Abstractions
 {
-    public interface ITransactionRepository //: IRepository<Transaction>
+    public interface ITransactionRepository : IDisposable
     {
-        //Client GetTransactionByUserId(Guid userId);
+        IEnumerable<Transaction> GetAll();
+        Transaction GetTransactionByTransactionId(Guid transactionId);
+        Transaction Add(Transaction itemToAdd);
+        bool Delete(Transaction itemToDelete);
+        Transaction Update(Transaction itemToUpdate);
     }
 }

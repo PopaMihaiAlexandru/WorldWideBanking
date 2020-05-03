@@ -7,74 +7,67 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using ApplicationLogic.DataModel;
 using DataAccess;
+using DataAccess.Repositories;
+using System.Data;
+using ApplicationLogic.Abstractions;
 
 namespace BankingApp.Controllers
 {
     public class TransactionsController : Controller
     {
-        private readonly BankDbContext _context;
+        private readonly ITransactionRepository _context;
+        private readonly BankDbContext _contextBank;
 
-        public TransactionsController(BankDbContext context)
+        public TransactionsController(ITransactionRepository context, BankDbContext contextBank)
         {
             _context = context;
+            _contextBank = contextBank;
         }
 
         // GET: Transactions
         public async Task<IActionResult> Index()
         {
-            return View(await _context.Transactions.ToListAsync());
+            var transactions = from transaction in _context.GetAll()
+                               select transaction;
+            return View(transactions);
         }
 
         // GET: Transactions/Details/5
-        public async Task<IActionResult> Details(Guid? id)
+        public async Task<IActionResult> Details(Guid id)
         {
-            if (id == null)
-            {
-                return NotFound();
-            }
-
-            var transaction = await _context.Transactions
-                .FirstOrDefaultAsync(m => m.TransactionID == id);
-            if (transaction == null)
-            {
-                return NotFound();
-            }
-
+            Transaction transaction = _context.GetTransactionByTransactionId(id);
             return View(transaction);
         }
 
-        // GET: Transactions/Create
-        public IActionResult Create()
+        //GET: Transactions/Create
+        public async Task<IActionResult> Create()
         {
-            return View();
+            return View(new Transaction());
         }
-
-        // POST: Transactions/Create
-        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
-        // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("TransactionID,SenderIBAN,RecipentIBAN,Amount,TransactionTime,Status")] Transaction transaction)
+        public async Task<IActionResult> Create(Transaction transaction)
         {
-            if (ModelState.IsValid)
-            {
+                if (ModelState.IsValid)
+                {
                 transaction.TransactionID = Guid.NewGuid();
                 _context.Add(transaction);
-                await _context.SaveChangesAsync();
-                return RedirectToAction(nameof(Index));
-            }
+                _context.Update(transaction);
+                return RedirectToAction("Index");
+                }
             return View(transaction);
         }
 
         // GET: Transactions/Edit/5
-        public async Task<IActionResult> Edit(Guid? id)
+        public async Task<IActionResult> Edit(Guid id)
         {
             if (id == null)
             {
                 return NotFound();
             }
 
-            var transaction = await _context.Transactions.FindAsync(id);
+            Transaction transaction = _context.GetTransactionByTransactionId(id);
+
             if (transaction == null)
             {
                 return NotFound();
@@ -87,46 +80,31 @@ namespace BankingApp.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(Guid id, [Bind("TransactionID,SenderIBAN,RecipentIBAN,Amount,TransactionTime,Status")] Transaction transaction)
+        public async Task<IActionResult> Edit(Transaction transaction)
         {
-            if (id != transaction.TransactionID)
+            try
             {
-                return NotFound();
-            }
-
-            if (ModelState.IsValid)
-            {
-                try
+                if (ModelState.IsValid)
                 {
                     _context.Update(transaction);
-                    await _context.SaveChangesAsync();
+                    return RedirectToAction("Index");
                 }
-                catch (DbUpdateConcurrencyException)
-                {
-                    if (!TransactionExists(transaction.TransactionID))
-                    {
-                        return NotFound();
-                    }
-                    else
-                    {
-                        throw;
-                    }
-                }
-                return RedirectToAction(nameof(Index));
+            }
+            catch (DbUpdateConcurrencyException)
+            {
+                ModelState.AddModelError("", "Unable to save changes. Try again, and if the problem persists see your system administrator.");
             }
             return View(transaction);
         }
 
         // GET: Transactions/Delete/5
-        public async Task<IActionResult> Delete(Guid? id)
+        public async Task<IActionResult> Delete(Guid id)
         {
             if (id == null)
             {
                 return NotFound();
             }
-
-            var transaction = await _context.Transactions
-                .FirstOrDefaultAsync(m => m.TransactionID == id);
+            Transaction transaction = _context.GetTransactionByTransactionId(id);
             if (transaction == null)
             {
                 return NotFound();
@@ -140,15 +118,14 @@ namespace BankingApp.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(Guid id)
         {
-            var transaction = await _context.Transactions.FindAsync(id);
-            _context.Transactions.Remove(transaction);
-            await _context.SaveChangesAsync();
-            return RedirectToAction(nameof(Index));
+                Transaction transaction = _context.GetTransactionByTransactionId(id);
+                _context.Delete(transaction);
+                return RedirectToAction("Index");
         }
 
         private bool TransactionExists(Guid id)
         {
-            return _context.Transactions.Any(e => e.TransactionID == id);
+            return _contextBank.Transactions.Any(e => e.TransactionID == id);
         }
     }
 }

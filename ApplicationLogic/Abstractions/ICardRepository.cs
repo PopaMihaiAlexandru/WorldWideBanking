@@ -7,8 +7,10 @@ namespace ApplicationLogic.Abstractions
 {
     public interface ICardRepository
     {
-        Card GetCardByUserId(Guid userId);
-        Card Add(Card itemToAdd);
         IEnumerable<Card> GetAll();
+        Card GetCardByCardId(Guid cardId);
+        Card Add(Card itemToAdd);
+        bool Delete(Card itemToDelete);
+        Card Update(Card itemToUpdate);
     } 
 }

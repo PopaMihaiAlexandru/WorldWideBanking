@@ -7,34 +7,38 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using ApplicationLogic.DataModel;
 using DataAccess;
+using ApplicationLogic.Abstractions;
 
 namespace BankingApp.Controllers
 {
     public class CardsController : Controller
     {
-        private readonly BankDbContext _context;
+        private readonly ICardRepository _context;
+        private readonly BankDbContext _contextBank;
 
-        public CardsController(BankDbContext context)
+        public CardsController(ICardRepository context, BankDbContext contextBank)
         {
             _context = context;
+            _contextBank = contextBank;
         }
 
         // GET: Cards
         public async Task<IActionResult> Index()
         {
-            return View(await _context.Cards.ToListAsync());
+            var transactions = from transaction in _context.GetAll()
+                               select transaction;
+            return View(transactions);
         }
 
         // GET: Cards/Details/5
-        public async Task<IActionResult> Details(Guid? id)
+        public async Task<IActionResult> Details(Guid id)
         {
             if (id == null)
             {
                 return NotFound();
             }
 
-            var card = await _context.Cards
-                .FirstOrDefaultAsync(m => m.CardID == id);
+            Card card = _context.GetCardByCardId(id);
             if (card == null)
             {
                 return NotFound();
@@ -42,11 +46,10 @@ namespace BankingApp.Controllers
 
             return View(card);
         }
-
-        // GET: Cards/Create
+            // GET: Cards/Create
         public IActionResult Create()
         {
-            return View();
+            return View(new Card());
         }
 
         // POST: Cards/Create
@@ -54,27 +57,28 @@ namespace BankingApp.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("CardID,OwnerName,SerialNumber,ExpiryDate,CVV,Type")] Card card)
+        public async Task<IActionResult> Create(Card card)
         {
             if (ModelState.IsValid)
             {
                 card.CardID = Guid.NewGuid();
                 _context.Add(card);
-                await _context.SaveChangesAsync();
-                return RedirectToAction(nameof(Index));
+                _context.Update(card);
+                return RedirectToAction("Index");
             }
             return View(card);
         }
 
         // GET: Cards/Edit/5
-        public async Task<IActionResult> Edit(Guid? id)
+        public async Task<IActionResult> Edit(Guid id)
         {
             if (id == null)
             {
                 return NotFound();
             }
 
-            var card = await _context.Cards.FindAsync(id);
+            Card card = _context.GetCardByCardId(id);
+
             if (card == null)
             {
                 return NotFound();
@@ -87,46 +91,31 @@ namespace BankingApp.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(Guid id, [Bind("CardID,OwnerName,SerialNumber,ExpiryDate,CVV,Type")] Card card)
+        public async Task<IActionResult> Edit(Card card)
         {
-            if (id != card.CardID)
+            try
             {
-                return NotFound();
-            }
-
-            if (ModelState.IsValid)
-            {
-                try
+                if (ModelState.IsValid)
                 {
                     _context.Update(card);
-                    await _context.SaveChangesAsync();
+                    return RedirectToAction("Index");
                 }
-                catch (DbUpdateConcurrencyException)
-                {
-                    if (!CardExists(card.CardID))
-                    {
-                        return NotFound();
-                    }
-                    else
-                    {
-                        throw;
-                    }
-                }
-                return RedirectToAction(nameof(Index));
+            }
+            catch (DbUpdateConcurrencyException)
+            {
+                ModelState.AddModelError("", "Unable to save changes. Try again, and if the problem persists see your system administrator.");
             }
             return View(card);
         }
 
         // GET: Cards/Delete/5
-        public async Task<IActionResult> Delete(Guid? id)
+        public async Task<IActionResult> Delete(Guid id)
         {
             if (id == null)
             {
                 return NotFound();
             }
-
-            var card = await _context.Cards
-                .FirstOrDefaultAsync(m => m.CardID == id);
+            Card card = _context.GetCardByCardId(id);
             if (card == null)
             {
                 return NotFound();
@@ -140,15 +129,14 @@ namespace BankingApp.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(Guid id)
         {
-            var card = await _context.Cards.FindAsync(id);
-            _context.Cards.Remove(card);
-            await _context.SaveChangesAsync();
-            return RedirectToAction(nameof(Index));
+            Card card = _context.GetCardByCardId(id);
+            _context.Delete(card);
+            return RedirectToAction("Index");
         }
 
         private bool CardExists(Guid id)
         {
-            return _context.Cards.Any(e => e.CardID == id);
+            return _contextBank.Cards.Any(e => e.CardID == id);
         }
     }
 }

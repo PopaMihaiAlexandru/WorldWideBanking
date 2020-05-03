@@ -16,6 +16,27 @@ namespace ApplicationLogic.Services
             this.cardRepository = cardRepository;
         }
 
+        public Card GetCardByCardId(string cardId)
+        {
+            Guid guidCardId = Guid.Empty;
+            Guid.TryParse(cardId, out guidCardId);
+
+            if (guidCardId == Guid.Empty)
+            {
+                throw new Exception("");
+            }
+
+            var card = cardRepository.GetCardByCardId(guidCardId);
+
+            if (card == null)
+            {
+                //throw new CardNotFoundException(card.Id);
+            }
+
+            return card;
+
+        }
+
         public Card Add(string ownerName, string serialNumber, DateTime expiryDate, string cvv, CardType type)
         {
             var product = Card.Create(ownerName, serialNumber, expiryDate, cvv, type);
