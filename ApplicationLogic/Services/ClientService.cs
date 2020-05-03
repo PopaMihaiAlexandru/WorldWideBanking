@@ -52,7 +52,7 @@ namespace ApplicationLogic.Services
 
         public bool Delete(Client ClientID)
         {
-            client.Clients.Remove(ClientID);
+           // client.Clients.Remove(ClientID);
             return true;
         }
     }

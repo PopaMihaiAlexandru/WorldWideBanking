@@ -8982,11 +8982,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\Vioeu\\source\\repos\\BankingApp\\BankingApp\\BankingApp.csproj",
+      "projectUniqueName": "C:\\Users\\Vioeu\\Documents\\GitHub\\WorldWideBanking\\BankingApp\\BankingApp.csproj",
       "projectName": "BankingApp",
-      "projectPath": "C:\\Users\\Vioeu\\source\\repos\\BankingApp\\BankingApp\\BankingApp.csproj",
+      "projectPath": "C:\\Users\\Vioeu\\Documents\\GitHub\\WorldWideBanking\\BankingApp\\BankingApp.csproj",
       "packagesPath": "C:\\Users\\Vioeu\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\Vioeu\\source\\repos\\BankingApp\\BankingApp\\obj\\",
+      "outputPath": "C:\\Users\\Vioeu\\Documents\\GitHub\\WorldWideBanking\\BankingApp\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\Vioeu\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -9002,8 +9002,8 @@
       "frameworks": {
         "netcoreapp3.1": {
           "projectReferences": {
-            "C:\\Users\\Vioeu\\source\\repos\\BankingApp\\DataAccess\\DataAccess.csproj": {
-              "projectPath": "C:\\Users\\Vioeu\\source\\repos\\BankingApp\\DataAccess\\DataAccess.csproj"
+            "C:\\Users\\Vioeu\\Documents\\GitHub\\WorldWideBanking\\DataAccess\\DataAccess.csproj": {
+              "projectPath": "C:\\Users\\Vioeu\\Documents\\GitHub\\WorldWideBanking\\DataAccess\\DataAccess.csproj"
             }
           }
         }
