@@ -15,6 +15,11 @@ namespace ApplicationLogic.Services
             this.clientRepository = clientRepository;
         }
 
+        public IEnumerable<Client> GetAll()
+        {
+            return clientRepository.GetAll();
+        }
+
         public Client GetClientByUserId(string userId)
         {
             Guid guidUserId = Guid.Empty;
@@ -34,6 +39,21 @@ namespace ApplicationLogic.Services
 
             return client;
 
+        }
+
+        public Client Add(string Name, string Surname, string Address, string PostalCode, string CNP,
+            string Country, string City, string District, string PhoneNumber, string Mail, ICollection<Account> Accounts)
+        {
+            var client = Client.Create(Name, Surname, Address, PostalCode, CNP, Country, City,
+                            District, PhoneNumber, Mail, Accounts);
+
+            return clientRepository.Add(client);
+        }
+
+        public bool Delete(Client ClientID)
+        {
+            client.Clients.Remove(ClientID);
+            return true;
         }
     }
 }
