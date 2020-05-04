@@ -13,24 +13,12 @@ namespace DataAccess.Repositories
         {
 
         }
-        public Card GetCardByUserId(Guid userId)
+        public Card GetCardByCardId(Guid cardId)
         {
             return dbContext.Cards
-                            .Where(card => card.CardID == userId)
+                            .Where(card => card.CardID == cardId)
                             .SingleOrDefault();
         }
 
-        public Card Add(Card itemToAdd)
-        {
-            var entity = dbContext.Add<Card>(itemToAdd);
-            dbContext.SaveChanges();
-            return entity.Entity;
-        }
-
-        public IEnumerable<Card> GetAll()
-        {
-            return dbContext.Set<Card>()
-                            .AsEnumerable();
-        }
     }
 }

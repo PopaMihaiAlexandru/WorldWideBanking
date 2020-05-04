@@ -6266,11 +6266,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\Vioeu\\source\\repos\\BankingApp\\DataAccess\\DataAccess.csproj",
+      "projectUniqueName": "C:\\Users\\Vioeu\\Documents\\GitHub\\WorldWideBanking\\DataAccess\\DataAccess.csproj",
       "projectName": "DataAccess",
-      "projectPath": "C:\\Users\\Vioeu\\source\\repos\\BankingApp\\DataAccess\\DataAccess.csproj",
+      "projectPath": "C:\\Users\\Vioeu\\Documents\\GitHub\\WorldWideBanking\\DataAccess\\DataAccess.csproj",
       "packagesPath": "C:\\Users\\Vioeu\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\Vioeu\\source\\repos\\BankingApp\\DataAccess\\obj\\",
+      "outputPath": "C:\\Users\\Vioeu\\Documents\\GitHub\\WorldWideBanking\\DataAccess\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\Vioeu\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -6286,8 +6286,8 @@
       "frameworks": {
         "netstandard2.0": {
           "projectReferences": {
-            "C:\\Users\\Vioeu\\source\\repos\\BankingApp\\ApplicationLogic\\ApplicationLogic.csproj": {
-              "projectPath": "C:\\Users\\Vioeu\\source\\repos\\BankingApp\\ApplicationLogic\\ApplicationLogic.csproj"
+            "C:\\Users\\Vioeu\\Documents\\GitHub\\WorldWideBanking\\ApplicationLogic\\ApplicationLogic.csproj": {
+              "projectPath": "C:\\Users\\Vioeu\\Documents\\GitHub\\WorldWideBanking\\ApplicationLogic\\ApplicationLogic.csproj"
             }
           }
         }
