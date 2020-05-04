@@ -44,12 +44,14 @@ namespace BankingApp
 
 
             services.AddScoped<ICardRepository, CardRepository>();
+            services.AddScoped<IAccountRepository, AccountRepository>();
             services.AddScoped<IClientRepository, EFClientRepository>();
             services.AddScoped<ITransactionRepository, TransactionRepository>();
 
             services.AddScoped<ClientService>();
             services.AddScoped<CardService>();
             services.AddScoped<TransactionService>();
+            services.AddScoped<AccountService>();
 
             services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true)
                 .AddEntityFrameworkStores<ApplicationDbContext>();
