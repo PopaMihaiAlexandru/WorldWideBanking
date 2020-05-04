@@ -15,17 +15,17 @@ namespace ApplicationLogic.Services
             this.accountRepository = accountRepository;
         }
 
-        public Account GetAccountByUserId(string userId)
+        public Account GetAccountByAccountId(string accountId)
         {
-            Guid guidUserId = Guid.Empty;
-            Guid.TryParse(userId, out guidUserId);
+            Guid guidAccountId = Guid.Empty;
+            Guid.TryParse(accountId, out guidAccountId);
 
-            if (guidUserId == Guid.Empty)
+            if (guidAccountId == Guid.Empty)
             {
                 throw new Exception("");
             }
 
-            var account = accountRepository.GetAccountByUserId(guidUserId);
+            var account = accountRepository.GetAccountByUserId(guidAccountId);
 
             if (account == null)
             {

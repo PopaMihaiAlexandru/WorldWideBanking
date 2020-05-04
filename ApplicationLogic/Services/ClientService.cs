@@ -20,17 +20,17 @@ namespace ApplicationLogic.Services
             return clientRepository.GetAll();
         }
 
-        public Client GetClientByUserId(string userId)
+        public Client GetClientByClientId(string clientId)
         {
-            Guid guidUserId = Guid.Empty;
-            Guid.TryParse(userId, out guidUserId);
+            Guid guidClientId = Guid.Empty;
+            Guid.TryParse(clientId, out guidClientId);
 
-            if (guidUserId == Guid.Empty)
+            if (guidClientId == Guid.Empty)
             {
                 throw new Exception("");
             }
 
-            var client = clientRepository.GetClientByUserId(guidUserId);
+            var client = clientRepository.GetClientByUserId(guidClientId);
 
             if (client == null)
             {
@@ -48,12 +48,6 @@ namespace ApplicationLogic.Services
                             District, PhoneNumber, Mail, Accounts);
 
             return clientRepository.Add(client);
-        }
-
-        public bool Delete(Client ClientID)
-        {
-           // client.Clients.Remove(ClientID);
-            return true;
         }
     }
 }
