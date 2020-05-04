@@ -13,6 +13,9 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using DataAccess;
+using ApplicationLogic.Services;
+using DataAccess.Repositories;
+using ApplicationLogic.Abstractions;
 
 namespace BankingApp
 {
@@ -35,6 +38,10 @@ namespace BankingApp
                 (options => options.UseSqlServer(connection));
             services.AddDbContext<ApplicationDbContext>
                 (options => options.UseSqlServer(connection));
+
+            services.AddScoped<ITransactionRepository, TransactionRepository>();
+            services.AddScoped<TransactionService>();
+
             services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true)
                 .AddEntityFrameworkStores<ApplicationDbContext>();
 
