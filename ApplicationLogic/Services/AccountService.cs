@@ -25,7 +25,7 @@ namespace ApplicationLogic.Services
                 throw new Exception("");
             }
 
-            var account = accountRepository.GetAccountByUserId(guidAccountId);
+            var account = accountRepository.GetAccountByAccountId(guidAccountId);
 
             if (account == null)
             {

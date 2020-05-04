@@ -30,7 +30,7 @@ namespace ApplicationLogic.Services
                 throw new Exception("");
             }
 
-            var client = clientRepository.GetClientByUserId(guidClientId);
+            var client = clientRepository.GetClientByClientId(guidClientId);
 
             if (client == null)
             {

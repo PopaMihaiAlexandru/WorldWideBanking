@@ -7,34 +7,39 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using ApplicationLogic.DataModel;
 using DataAccess;
+using ApplicationLogic.Abstractions;
 
 namespace BankingApp.Controllers
 {
     public class ClientsController : Controller
     {
-        private readonly BankDbContext _context;
+        private readonly IClientRepository _context;
+        private readonly BankDbContext _contextBank;
 
-        public ClientsController(BankDbContext context)
+        public ClientsController(IClientRepository context, BankDbContext contextBank)
         {
             _context = context;
+            _contextBank = contextBank;
         }
 
         // GET: Clients
         public async Task<IActionResult> Index()
         {
-            return View(await _context.Clients.ToListAsync());
+            var clients = from client in _context.GetAll()
+                           select client;
+            return View(clients);
         }
 
         // GET: Clients/Details/5
-        public async Task<IActionResult> Details(Guid? id)
+        public async Task<IActionResult> Details(Guid id)
         {
             if (id == null)
             {
                 return NotFound();
             }
 
-            var client = await _context.Clients
-                .FirstOrDefaultAsync(m => m.ClientID == id);
+            Client client = _context.GetClientByClientId(id);
+
             if (client == null)
             {
                 return NotFound();
@@ -54,27 +59,28 @@ namespace BankingApp.Controllers
         // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("ClientID,Name,Surname,Address,PostalCode,CNP,Country,City,District,PhoneNumber,Mail")] Client client)
+        public async Task<IActionResult> Create(Client client)
         {
             if (ModelState.IsValid)
             {
                 client.ClientID = Guid.NewGuid();
                 _context.Add(client);
-                await _context.SaveChangesAsync();
-                return RedirectToAction(nameof(Index));
+                _context.Update(client);
+                return RedirectToAction("Index");
             }
             return View(client);
         }
 
         // GET: Clients/Edit/5
-        public async Task<IActionResult> Edit(Guid? id)
+        public async Task<IActionResult> Edit(Guid id)
         {
             if (id == null)
             {
                 return NotFound();
             }
 
-            var client = await _context.Clients.FindAsync(id);
+            Client client = _context.GetClientByClientId(id);
+
             if (client == null)
             {
                 return NotFound();
@@ -87,46 +93,34 @@ namespace BankingApp.Controllers
         // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(Guid id, [Bind("ClientID,Name,Surname,Address,PostalCode,CNP,Country,City,District,PhoneNumber,Mail")] Client client)
+        public async Task<IActionResult> Edit(Client client)
         {
-            if (id != client.ClientID)
-            {
-                return NotFound();
-            }
 
-            if (ModelState.IsValid)
+            try
             {
-                try
+                if (ModelState.IsValid)
                 {
                     _context.Update(client);
-                    await _context.SaveChangesAsync();
+                    return RedirectToAction("Index");
                 }
-                catch (DbUpdateConcurrencyException)
-                {
-                    if (!ClientExists(client.ClientID))
-                    {
-                        return NotFound();
-                    }
-                    else
-                    {
-                        throw;
-                    }
-                }
-                return RedirectToAction(nameof(Index));
+            }
+            catch (DbUpdateConcurrencyException)
+            {
+                ModelState.AddModelError("", "Unable to save changes. Try again, and if the problem persists see your system administrator.");
             }
             return View(client);
         }
 
         // GET: Clients/Delete/5
-        public async Task<IActionResult> Delete(Guid? id)
+        public async Task<IActionResult> Delete(Guid id)
         {
             if (id == null)
             {
                 return NotFound();
             }
 
-            var client = await _context.Clients
-                .FirstOrDefaultAsync(m => m.ClientID == id);
+            Client client = _context.GetClientByClientId(id);
+
             if (client == null)
             {
                 return NotFound();
@@ -140,15 +134,14 @@ namespace BankingApp.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(Guid id)
         {
-            var client = await _context.Clients.FindAsync(id);
-            _context.Clients.Remove(client);
-            await _context.SaveChangesAsync();
-            return RedirectToAction(nameof(Index));
+            Client client = _context.GetClientByClientId(id);
+            _context.Delete(client);
+            return RedirectToAction("Index");
         }
 
         private bool ClientExists(Guid id)
         {
-            return _context.Clients.Any(e => e.ClientID == id);
+            return _contextBank.Clients.Any(e => e.ClientID == id);
         }
     }
 }

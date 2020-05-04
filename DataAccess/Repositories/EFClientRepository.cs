@@ -13,10 +13,10 @@ namespace DataAccess.Repositories
         {
 
         }
-        public Client GetClientByUserId(Guid userId)
+        public Client GetClientByClientId(Guid clientId)
         {
             var client = dbContext.Clients
-                         .Where(c => c.ClientID == userId)
+                         .Where(c => c.ClientID == clientId)
                          .SingleOrDefault();
             return client;
         }
