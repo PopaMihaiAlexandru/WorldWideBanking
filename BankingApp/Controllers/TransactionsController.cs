@@ -9,16 +9,19 @@ using ApplicationLogic.DataModel;
 using DataAccess;
 using DataAccess.Repositories;
 using System.Data;
+using ApplicationLogic.Abstractions;
 
 namespace BankingApp.Controllers
 {
     public class TransactionsController : Controller
     {
-        private readonly TransactionRepository _context;
+        private readonly ITransactionRepository _context;
+        private readonly BankDbContext _contextBank;
 
-        public TransactionsController(TransactionRepository context)
+        public TransactionsController(ITransactionRepository context, BankDbContext contextBank)
         {
             _context = context;
+            _contextBank = contextBank;
         }
 
         // GET: Transactions
@@ -26,7 +29,7 @@ namespace BankingApp.Controllers
         {
             var transactions = from transaction in _context.GetAll()
                                select transaction;
-                               return View(transactions);
+            return View(transactions);
         }
 
         // GET: Transactions/Details/5
@@ -36,28 +39,22 @@ namespace BankingApp.Controllers
             return View(transaction);
         }
 
-        // GET: Transactions/Create
-        public IActionResult Create()
+        //GET: Transactions/Create
+        public async Task<IActionResult> Create()
         {
             return View(new Transaction());
         }
-
+        [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create(Transaction transaction)
         {
-            try
-            {
                 if (ModelState.IsValid)
                 {
-                    _context.Add(transaction);
-                    _context.Update(transaction);
-                    return RedirectToAction("Index");
+                transaction.TransactionID = Guid.NewGuid();
+                _context.Add(transaction);
+                _context.Update(transaction);
+                return RedirectToAction("Index");
                 }
-            }
-            catch (DataException)
-            {
-                ModelState.AddModelError("", "Unable to save changes. Try again, and if the problem persists see your system administrator.");
-            }
             return View(transaction);
         }
 
@@ -124,6 +121,11 @@ namespace BankingApp.Controllers
                 Transaction transaction = _context.GetTransactionByTransactionId(id);
                 _context.Delete(transaction);
                 return RedirectToAction("Index");
+        }
+
+        private bool TransactionExists(Guid id)
+        {
+            return _contextBank.Transactions.Any(e => e.TransactionID == id);
         }
     }
 }
