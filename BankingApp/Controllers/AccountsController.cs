@@ -7,32 +7,37 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using ApplicationLogic.DataModel;
 using DataAccess;
+using ApplicationLogic.Abstractions;
 
 namespace BankingApp.Controllers
 {
     public class AccountsController : Controller
     {
-        private readonly BankDbContext _context;
+        private readonly IAccountRepository _context;
+        private readonly BankDbContext _contextBank;
 
-        public AccountsController(BankDbContext context)
+        public AccountsController(IAccountRepository context, BankDbContext contextBank)
         {
             _context = context;
+            _contextBank = contextBank;
         }
 
         public async Task<IActionResult> Index()
         {
-            return View(await _context.Accounts.ToListAsync());
+            var accounts = from account in _context.GetAll()
+                               select account;
+            return View(accounts);
         }
 
-        public async Task<IActionResult> Details(Guid? id)
+        public async Task<IActionResult> Details(Guid id)
         {
             if (id == null)
             {
                 return NotFound();
             }
 
-            var account = await _context.Accounts
-                .FirstOrDefaultAsync(m => m.AccountID == id);
+            Account account = _context.GetAccountByAccountId(id);
+
             if (account == null)
             {
                 return NotFound();
@@ -48,26 +53,27 @@ namespace BankingApp.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("AccountID,IBAN,Balance")] Account account)
+        public async Task<IActionResult> Create(Account account)
         {
             if (ModelState.IsValid)
             {
                 account.AccountID = Guid.NewGuid();
                 _context.Add(account);
-                await _context.SaveChangesAsync();
-                return RedirectToAction(nameof(Index));
+                _context.Update(account);
+                return RedirectToAction("Index");
             }
             return View(account);
         }
 
-        public async Task<IActionResult> Edit(Guid? id)
+        public async Task<IActionResult> Edit(Guid id)
         {
             if (id == null)
             {
                 return NotFound();
             }
 
-            var account = await _context.Accounts.FindAsync(id);
+            Account account = _context.GetAccountByAccountId(id);
+
             if (account == null)
             {
                 return NotFound();
@@ -77,45 +83,33 @@ namespace BankingApp.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(Guid id, [Bind("AccountID,IBAN,Balance")] Account account)
+        public async Task<IActionResult> Edit(Account account)
         {
-            if (id != account.AccountID)
-            {
-                return NotFound();
-            }
 
-            if (ModelState.IsValid)
+            try
             {
-                try
+                if (ModelState.IsValid)
                 {
                     _context.Update(account);
-                    await _context.SaveChangesAsync();
+                    return RedirectToAction("Index");
                 }
-                catch (DbUpdateConcurrencyException)
-                {
-                    if (!AccountExists(account.AccountID))
-                    {
-                        return NotFound();
-                    }
-                    else
-                    {
-                        throw;
-                    }
-                }
-                return RedirectToAction(nameof(Index));
+            }
+            catch (DbUpdateConcurrencyException)
+            {
+                ModelState.AddModelError("", "Unable to save changes. Try again, and if the problem persists see your system administrator.");
             }
             return View(account);
         }
 
-        public async Task<IActionResult> Delete(Guid? id)
+        public async Task<IActionResult> Delete(Guid id)
         {
             if (id == null)
             {
                 return NotFound();
             }
 
-            var account = await _context.Accounts
-                .FirstOrDefaultAsync(m => m.AccountID == id);
+            Account account = _context.GetAccountByAccountId(id);
+
             if (account == null)
             {
                 return NotFound();
@@ -128,15 +122,14 @@ namespace BankingApp.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(Guid id)
         {
-            var account = await _context.Accounts.FindAsync(id);
-            _context.Accounts.Remove(account);
-            await _context.SaveChangesAsync();
-            return RedirectToAction(nameof(Index));
+            Account account = _context.GetAccountByAccountId(id);
+            _context.Delete(account);
+            return RedirectToAction("Index");
         }
 
         private bool AccountExists(Guid id)
         {
-            return _context.Accounts.Any(e => e.AccountID == id);
+            return _contextBank.Accounts.Any(e => e.AccountID == id);
         }
     }
 }

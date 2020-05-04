@@ -7,7 +7,7 @@ namespace ApplicationLogic.Abstractions
 {
     public interface IAccountRepository : IRepository<Account>
     {
-        Account GetAccountByUserId(Guid userId);
+        Account GetAccountByAccountId(Guid accountId);
         Account Add(Account itemToAdd);
         bool Delete(Account itemToDelete);
         Account Update(Account itemToUpdate);

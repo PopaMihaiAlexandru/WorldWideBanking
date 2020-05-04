@@ -13,10 +13,10 @@ namespace DataAccess.Repositories
         {
 
         }
-        public Account GetAccountByUserId(Guid userId)
+        public Account GetAccountByAccountId(Guid accountId)
         {
             var account = dbContext.Accounts
-                         .Where(c => c.AccountID == userId)
+                         .Where(c => c.AccountID == accountId)
                          .SingleOrDefault();
             return account;
         }
