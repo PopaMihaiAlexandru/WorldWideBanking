@@ -18,8 +18,7 @@ namespace ApplicationLogic.Services
 
         public Card GetCardByCardId(string cardId)
         {
-            Guid guidCardId = Guid.Empty;
-            Guid.TryParse(cardId, out guidCardId);
+            Guid.TryParse(cardId, out Guid guidCardId);
 
             if (guidCardId == Guid.Empty)
             {

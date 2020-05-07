@@ -7,30 +7,27 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using BankingApp.Models;
 using ApplicationLogic.Services.Interfaces;
+using Microsoft.AspNetCore.Authorization;
 
 namespace BankingApp.Controllers
 {
     public class HomeController : Controller
     {
-        //private readonly ILogger<HomeController> _logger;
-        ILog _log;
+        private readonly ILogger<HomeController> _logger;
 
-        //public HomeController(ILogger<HomeController> logger)
-        //{
-        //    _logger = logger;
-        //}
 
-        public HomeController(ILog log)
+        public HomeController(ILogger<HomeController> logger)
         {
-            _log = log;
+            _logger = logger;
         }
+
 
         public IActionResult Index()
         {
-            _log.info("Executing /home/index");
             return View();
         }
 
+        [Authorize (Roles ="Administrator")]
         public IActionResult Privacy()
         {
             return View();
@@ -46,6 +43,14 @@ namespace BankingApp.Controllers
             return View();
         }
 
+        public IActionResult Accounts()
+        {
+            return View();
+        }
+        public IActionResult Clients()
+        {
+            return View();
+        }
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()

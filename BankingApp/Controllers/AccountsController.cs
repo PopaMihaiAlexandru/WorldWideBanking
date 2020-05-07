@@ -8,18 +8,18 @@ using Microsoft.EntityFrameworkCore;
 using ApplicationLogic.DataModel;
 using DataAccess;
 using ApplicationLogic.Abstractions;
+using Microsoft.AspNetCore.Authorization;
 
 namespace BankingApp.Controllers
 {
+    [Authorize]
     public class AccountsController : Controller
     {
         private readonly IAccountRepository _context;
-        private readonly BankDbContext _contextBank;
 
-        public AccountsController(IAccountRepository context, BankDbContext contextBank)
+        public AccountsController(IAccountRepository context)
         {
             _context = context;
-            _contextBank = contextBank;
         }
 
         public async Task<IActionResult> Index()
@@ -127,9 +127,5 @@ namespace BankingApp.Controllers
             return RedirectToAction("Index");
         }
 
-        private bool AccountExists(Guid id)
-        {
-            return _contextBank.Accounts.Any(e => e.AccountID == id);
-        }
     }
 }

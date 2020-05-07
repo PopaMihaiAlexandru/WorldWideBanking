@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\Vioeu\\Documents\\GitHub\\WorldWideBanking\\ApplicationLogic\\ApplicationLogic.csproj": {}
+    "C:\\Users\\Vioeu\\Desktop\\WorldWideBanking with login - Copy\\ApplicationLogic\\ApplicationLogic.csproj": {}
   },
   "projects": {
-    "C:\\Users\\Vioeu\\Documents\\GitHub\\WorldWideBanking\\ApplicationLogic\\ApplicationLogic.csproj": {
+    "C:\\Users\\Vioeu\\Desktop\\WorldWideBanking with login - Copy\\ApplicationLogic\\ApplicationLogic.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Vioeu\\Documents\\GitHub\\WorldWideBanking\\ApplicationLogic\\ApplicationLogic.csproj",
+        "projectUniqueName": "C:\\Users\\Vioeu\\Desktop\\WorldWideBanking with login - Copy\\ApplicationLogic\\ApplicationLogic.csproj",
         "projectName": "ApplicationLogic",
-        "projectPath": "C:\\Users\\Vioeu\\Documents\\GitHub\\WorldWideBanking\\ApplicationLogic\\ApplicationLogic.csproj",
+        "projectPath": "C:\\Users\\Vioeu\\Desktop\\WorldWideBanking with login - Copy\\ApplicationLogic\\ApplicationLogic.csproj",
         "packagesPath": "C:\\Users\\Vioeu\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Vioeu\\Documents\\GitHub\\WorldWideBanking\\ApplicationLogic\\obj\\",
+        "outputPath": "C:\\Users\\Vioeu\\Desktop\\WorldWideBanking with login - Copy\\ApplicationLogic\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\Vioeu\\AppData\\Roaming\\NuGet\\NuGet.Config",

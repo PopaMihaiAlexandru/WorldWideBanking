@@ -5,7 +5,7 @@ using System.Text;
 
 namespace ApplicationLogic.Abstractions
 {
-    public interface IClientRepository : IRepository<Client>
+    public interface IClientRepository 
     {
         Client GetClientByClientId(Guid userId);
         Client Add(Client itemToAdd);

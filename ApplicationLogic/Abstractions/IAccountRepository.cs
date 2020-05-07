@@ -5,7 +5,7 @@ using System.Text;
 
 namespace ApplicationLogic.Abstractions
 {
-    public interface IAccountRepository : IRepository<Account>
+    public interface IAccountRepository 
     {
         Account GetAccountByAccountId(Guid accountId);
         Account Add(Account itemToAdd);

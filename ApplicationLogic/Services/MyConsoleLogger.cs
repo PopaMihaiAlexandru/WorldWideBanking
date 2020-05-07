@@ -7,7 +7,7 @@ namespace ApplicationLogic.Services
 {
     public class MyConsoleLogger: ILog
     {
-        public void info(string str)
+        public void Info(string str)
         {
             Console.WriteLine(str);
         }

@@ -16,8 +16,7 @@ namespace ApplicationLogic.Services
         }
         public Transaction GetTransactionByTransactionId(string transactionId)
         {
-            Guid guidTransactionId = Guid.Empty;
-            Guid.TryParse(transactionId, out guidTransactionId);
+            Guid.TryParse(transactionId, out Guid guidTransactionId);
 
             if (guidTransactionId == Guid.Empty)
             {

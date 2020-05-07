@@ -10,15 +10,14 @@ namespace ApplicationLogic.Services
     {
         private readonly IAccountRepository accountRepository;
 
-        public AccountService(IClientRepository clientRepository)
+        public AccountService(IAccountRepository accountRepository)
         {
             this.accountRepository = accountRepository;
         }
 
         public Account GetAccountByAccountId(string accountId)
         {
-            Guid guidAccountId = Guid.Empty;
-            Guid.TryParse(accountId, out guidAccountId);
+            Guid.TryParse(accountId, out Guid guidAccountId);
 
             if (guidAccountId == Guid.Empty)
             {

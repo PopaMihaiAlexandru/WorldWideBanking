@@ -6,6 +6,6 @@ namespace ApplicationLogic.Services.Interfaces
 {
     public interface ILog
     {
-        void info(string str);
+        void Info(string str);
     }
 }

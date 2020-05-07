@@ -36,12 +36,36 @@ namespace BankingApp
 
             services.Add(new ServiceDescriptor(typeof(ILog), new MyConsoleLogger()));
 
-            var connection = @"Server=.\SQLEXPRESS;Database=Bank;Trusted_Connection=True;ConnectRetryCount=0";
+            var connection = @"Server=.\SQLEXPRESS;Database=BankUpdated;Trusted_Connection=True;ConnectRetryCount=0";
             services.AddDbContext<BankDbContext>
                 (options => options.UseSqlServer(connection));
             services.AddDbContext<ApplicationDbContext>
                 (options => options.UseSqlServer(connection));
 
+            services.Configure<IdentityOptions>(options =>
+            {
+                options.Password.RequireDigit = true;
+                options.Password.RequiredLength = 8;
+                options.Password.RequireNonAlphanumeric = true;
+                options.Password.RequireLowercase = false;
+                options.Password.RequireUppercase = true;
+
+                options.Lockout.DefaultLockoutTimeSpan = TimeSpan.FromMinutes(60);
+                options.Lockout.MaxFailedAccessAttempts = 3;
+                options.Lockout.AllowedForNewUsers = true;
+
+                options.User.RequireUniqueEmail = true;
+
+            });
+
+            services.ConfigureApplicationCookie(options =>
+            {
+                options.Cookie.HttpOnly = true;
+
+                options.LoginPath = "/Identity/Account/Login";
+                options.AccessDeniedPath = "/Identity/Account/AccessDenied";
+                options.SlidingExpiration = true;
+            });
 
             services.AddScoped<ICardRepository, CardRepository>();
             services.AddScoped<IAccountRepository, AccountRepository>();
@@ -53,8 +77,10 @@ namespace BankingApp
             services.AddScoped<TransactionService>();
             services.AddScoped<AccountService>();
 
-            services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true)
-                .AddEntityFrameworkStores<ApplicationDbContext>();
+            services.AddIdentity<IdentityUser, IdentityRole>()
+                .AddEntityFrameworkStores<BankDbContext>();
+            //services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true)
+                //.AddEntityFrameworkStores<ApplicationDbContext>();
 
             services.AddRazorPages();
         }

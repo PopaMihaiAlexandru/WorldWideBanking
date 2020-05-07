@@ -11,15 +11,10 @@ namespace DataAccess.Repositories
 {
     public class TransactionRepository : BaseRepository<Transaction>, ITransactionRepository
     {
-        private BankDbContext _context;
+        private readonly BankDbContext _context;
         public TransactionRepository(BankDbContext dbContext) : base(dbContext)
         {
             this._context = dbContext;
-        }
-
-        public IEnumerable<Transaction> GetAll()
-        {
-            return _context.Transactions.ToList();
         }
 
         public Transaction GetTransactionByTransactionId(Guid transactionId)

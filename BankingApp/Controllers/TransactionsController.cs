@@ -10,18 +10,18 @@ using DataAccess;
 using DataAccess.Repositories;
 using System.Data;
 using ApplicationLogic.Abstractions;
+using Microsoft.AspNetCore.Authorization;
 
 namespace BankingApp.Controllers
 {
+    [Authorize]
     public class TransactionsController : Controller
     {
         private readonly ITransactionRepository _context;
-        private readonly BankDbContext _contextBank;
 
-        public TransactionsController(ITransactionRepository context, BankDbContext contextBank)
+        public TransactionsController(ITransactionRepository context)
         {
             _context = context;
-            _contextBank = contextBank;
         }
 
         // GET: Transactions
@@ -123,9 +123,5 @@ namespace BankingApp.Controllers
                 return RedirectToAction("Index");
         }
 
-        private bool TransactionExists(Guid id)
-        {
-            return _contextBank.Transactions.Any(e => e.TransactionID == id);
-        }
     }
 }

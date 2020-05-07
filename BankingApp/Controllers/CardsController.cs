@@ -8,9 +8,11 @@ using Microsoft.EntityFrameworkCore;
 using ApplicationLogic.DataModel;
 using DataAccess;
 using ApplicationLogic.Abstractions;
+using Microsoft.AspNetCore.Authorization;
 
 namespace BankingApp.Controllers
 {
+    [Authorize]
     public class CardsController : Controller
     {
         private readonly ICardRepository _context;
