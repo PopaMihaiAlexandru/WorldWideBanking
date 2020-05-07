@@ -42,10 +42,10 @@ namespace ApplicationLogic.Services
         }
 
         public Client Add(string Name, string Surname, string Address, string PostalCode, string CNP,
-            string Country, string City, string District, string PhoneNumber, string Mail, ICollection<Account> Accounts)
+            string Country, string City, string District, string PhoneNumber, string Mail)
         {
             var client = Client.Create(Name, Surname, Address, PostalCode, CNP, Country, City,
-                            District, PhoneNumber, Mail, Accounts);
+                            District, PhoneNumber, Mail);
 
             return clientRepository.Add(client);
         }

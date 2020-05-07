@@ -21,7 +21,7 @@ namespace ApplicationLogic.DataModel
         public ICollection<Account> Accounts { get; set; }
 
         public static Client Create(string name, string surname, string address, string postalCode, string CNP,
-            string country, string city, string district, string phoneNumber, string mail, ICollection<Account> accounts)
+            string country, string city, string district, string phoneNumber, string mail)
         {
             Client client = new Client
             {
@@ -35,8 +35,7 @@ namespace ApplicationLogic.DataModel
                 City = city,
                 District = district,
                 PhoneNumber = phoneNumber,
-                Mail = mail,
-                Accounts = accounts
+                Mail = mail
             };
             return client;
         }
