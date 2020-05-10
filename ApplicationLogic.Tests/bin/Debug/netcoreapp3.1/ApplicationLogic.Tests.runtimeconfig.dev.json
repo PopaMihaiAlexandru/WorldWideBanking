@@ -1,0 +1,8 @@
+{
+  "runtimeOptions": {
+    "additionalProbingPaths": [
+      "C:\\Users\\serba\\.dotnet\\store\\|arch|\\|tfm|",
+      "C:\\Users\\serba\\.nuget\\packages"
+    ]
+  }
+}
