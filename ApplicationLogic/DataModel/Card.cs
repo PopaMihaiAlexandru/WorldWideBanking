@@ -18,7 +18,7 @@ namespace ApplicationLogic.DataModel
         public string CVV { get; set; }
         public CardType Type { get; set; }
 
-        public static Card Create(string ownerName, string serialNumber, DateTime expiryDate, string cvv, CardType type )
+        public /*static*/ Card Create(string ownerName, string serialNumber, DateTime expiryDate, string cvv, CardType type )
         {
             Card card = new Card
             {
