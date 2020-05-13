@@ -10,7 +10,7 @@ namespace ApplicationLogic.Services
     {
         private readonly IAccountRepository accountRepository;
 
-        public AccountService(IClientRepository clientRepository)
+        public AccountService(IAccountRepository accountRepository)
         {
             this.accountRepository = accountRepository;
         }
