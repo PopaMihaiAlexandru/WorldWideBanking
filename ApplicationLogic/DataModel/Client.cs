@@ -35,7 +35,8 @@ namespace ApplicationLogic.DataModel
                 City = city,
                 District = district,
                 PhoneNumber = phoneNumber,
-                Mail = mail
+                Mail = mail,
+                Accounts = new List<Account>()
             };
             return client;
         }

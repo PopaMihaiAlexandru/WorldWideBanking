@@ -18,7 +18,9 @@ namespace ApplicationLogic.DataModel
             {
                 AccountID = Guid.NewGuid(),
                 IBAN = IBAN,
-                Balance = balance
+                Balance = balance,
+                Transactions = new List<Transaction>(),
+                Cards = new List<Card>()
             };
             return account;
         }
