@@ -1,4 +1,5 @@
 using ApplicationLogic.Abstractions;
+using ApplicationLogic.DataModel;
 using ApplicationLogic.Services;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Moq;
@@ -10,76 +11,62 @@ namespace ApplicationLogic.Tests.Services
     [TestClass]
     public class CardServiceTests
     {
-        private MockRepository mockRepository;
 
-        private Mock<ICardRepository> mockCardRepository;
+        private Mock<ICardRepository> cardRepoMock = new Mock<ICardRepository>();
+        private Guid existingCardId = Guid.Parse("8766ABCD-EFA5-CBA7-1050-DEF2080BEDC1");
 
         [TestInitialize]
         public void TestInitialize()
         {
-            this.mockRepository = new MockRepository(MockBehavior.Strict);
+            var card = new Card
+            {
+                CardID = existingCardId,
+                OwnerName = "Alex",
+                SerialNumber = "1234",
+                ExpiryDate = DateTime.Today.AddYears(2),
+                CVV = "357",
+                Type = CardType.MasterCard
+            };
 
-            this.mockCardRepository = this.mockRepository.Create<ICardRepository>();
+            cardRepoMock.Setup(cardRepo => cardRepo.GetCardByCardId(existingCardId))
+                            .Returns(card);
         }
 
-        private CardService CreateService()
+
+        [TestMethod]
+        public void GetCardByCardId_ThrowsException_WhenCardIdHasInvalidValue()
         {
-            return new CardService(
-                this.mockCardRepository.Object);
+            // Arrange
+            var cardService = new CardService(cardRepoMock.Object);
+
+            var badCardId = "dada dahdakfjkfngf jkl";
+            // Act
+
+            // Assert
+            Assert.ThrowsException<Exception>(() => {
+                cardService.GetCardByCardId(badCardId);
+            });
         }
 
         [TestMethod]
-        public void GetCardByCardId_StateUnderTest_ExpectedBehavior()
+        public void GetCardByCardId_Returns_CardWhenExists()
         {
-            // Arrange
-            var service = this.CreateService();
-            string cardId = null;
 
-            // Act
-            var result = service.GetCardByCardId(
-                cardId);
-
-            // Assert
-            Assert.Fail();
-            this.mockRepository.VerifyAll();
-        }
-
-        [TestMethod]
-        public void Add_StateUnderTest_ExpectedBehavior()
-        {
-            // Arrange
-            var service = this.CreateService();
-            string ownerName = null;
-            string serialNumber = null;
-            DateTime expiryDate = default(global::System.DateTime);
-            string cvv = null;
-            CardType type = default(global::ApplicationLogic.DataModel.Card.CardType);
-
-            // Act
-            var result = service.Add(
-                ownerName,
-                serialNumber,
-                expiryDate,
-                cvv,
-                type);
-
-            // Assert
-            Assert.Fail();
-            this.mockRepository.VerifyAll();
-        }
-
-        [TestMethod]
-        public void GetAll_StateUnderTest_ExpectedBehavior()
-        {
-            // Arrange
-            var service = this.CreateService();
-
-            // Act
-            var result = service.GetAll();
-
-            // Assert
-            Assert.Fail();
-            this.mockRepository.VerifyAll();
+            Exception throwException = null;
+            var cardService = new CardService(cardRepoMock.Object);
+            Card card = null;
+            //act   
+            try
+            {
+                card = cardService.GetCardByCardId(existingCardId.ToString());
+            }
+            catch (Exception e)
+            {
+                throwException = e;
+            }
+            //assert
+            Assert.IsNull(throwException, $"Exception was thrown");
+            Assert.IsNotNull(card);
         }
     }
 }

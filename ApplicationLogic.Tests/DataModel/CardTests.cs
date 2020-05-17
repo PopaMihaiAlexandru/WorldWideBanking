@@ -9,14 +9,11 @@ namespace ApplicationLogic.Tests.DataModel
     [TestClass]
     public class CardTests
     {
-        private MockRepository mockRepository;
-
-
 
         [TestInitialize]
         public void TestInitialize()
         {
-            this.mockRepository = new MockRepository(MockBehavior.Strict);
+            //this.mockRepository = new MockRepository(MockBehavior.Strict);
 
 
         }
@@ -31,14 +28,14 @@ namespace ApplicationLogic.Tests.DataModel
         {
             // Arrange
             var card = this.CreateCard();
-            string ownerName = null;
-            string serialNumber = null;
-            DateTime expiryDate = default(global::System.DateTime);
-            string cvv = null;
-            CardType type = default(global::ApplicationLogic.DataModel.Card.CardType);
+            string ownerName = "Alex";
+            string serialNumber = "ned3421213";
+            DateTime expiryDate = DateTime.Today.AddYears(2);
+            string cvv = "123";
+            CardType type = CardType.MasterCard;
 
             // Act
-            var result = card.Create(
+            var result = Card.Create(
                 ownerName,
                 serialNumber,
                 expiryDate,
@@ -46,8 +43,42 @@ namespace ApplicationLogic.Tests.DataModel
                 type);
 
             // Assert
-            Assert.Fail();
-            this.mockRepository.VerifyAll();
+            Assert.IsNotNull(result);
+            Assert.AreNotEqual(Guid.Empty, result.CardID);
+            Assert.AreEqual(ownerName, result.OwnerName);
+            Assert.AreEqual(serialNumber, result.SerialNumber);
+            Assert.AreEqual(expiryDate, result.ExpiryDate);
+            Assert.AreEqual(cvv, result.CVV);
+            Assert.AreEqual(type, result.Type);
+        }
+
+        [TestMethod]
+        public void Create_StateUnderTest_UnexpectedBehavior()
+        {
+            // Arrange
+            var card = this.CreateCard();
+            string ownerName = "Alex";
+            string serialNumber = "ned3421213";
+            DateTime expiryDate = DateTime.Today.AddYears(2);
+            string cvv = "123";
+            CardType type = CardType.MasterCard;
+
+            // Act
+            var result = Card.Create(
+                ownerName,
+                serialNumber,
+                expiryDate,
+                cvv,
+                type);
+
+            // Assert
+            Assert.IsNull(result);
+            Assert.AreEqual(Guid.Empty, result.CardID);
+            Assert.AreNotEqual(ownerName, result.OwnerName);
+            Assert.AreNotEqual(serialNumber, result.SerialNumber);
+            Assert.AreNotEqual(expiryDate, result.ExpiryDate);
+            Assert.AreNotEqual(cvv, result.CVV);
+            Assert.AreNotEqual(type, result.Type);
         }
     }
 }
