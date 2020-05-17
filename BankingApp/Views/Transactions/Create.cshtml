@@ -4,54 +4,69 @@
     ViewData["Title"] = "Create";
 }
 
-<h1>Create</h1>
-
-<h4>Transaction</h4>
-<hr />
-<div class="row">
-    <div class="col-md-4">
-        <form asp-action="Create">
-            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-            <div class="form-group">
-                <label asp-for="SenderIBAN" class="control-label"></label>
-                <input asp-for="SenderIBAN" class="form-control" required />
-                <span asp-validation-for="SenderIBAN" class="text-danger"></span>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - BankingApp</title>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/css/site.css" />
+</head>
+<body style="background-color: #CCDDF6; overflow-x: hidden;">
+    <div class="container-main">
+        <h1>Create</h1>
+        <h4>Transaction</h4>
+        <div style="background-color: rgb(255,255,255,0.5);">
+            <div style="margin: 20px;">
+                <hr />
+                <div class="row">
+                    <div class="col-md-4">
+                        <form asp-action="Create">
+                            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                            <div class="form-group">
+                                <label asp-for="SenderIBAN" class="control-label"></label>
+                                <input asp-for="SenderIBAN" class="form-control" required />
+                                <span asp-validation-for="SenderIBAN" class="text-danger"></span>
+                            </div>
+                            <div class="form-group">
+                                <label asp-for="RecipentIBAN" class="control-label"></label>
+                                <input asp-for="RecipentIBAN" class="form-control" required />
+                                <span asp-validation-for="RecipentIBAN" class="text-danger"></span>
+                            </div>
+                            <div class="form-group">
+                                <label asp-for="Amount" class="control-label"></label>
+                                <input asp-for="Amount" class="form-control" required />
+                                <span asp-validation-for="Amount" class="text-danger"></span>
+                            </div>
+                            <div class="form-group">
+                                <label asp-for="TransactionTime" class="control-label"></label>
+                                <input asp-for="TransactionTime" class="form-control" required />
+                                <span asp-validation-for="TransactionTime" class="text-danger"></span>
+                            </div>
+                            <div class="form-group">
+                                <label asp-for="Status" class="control-label"></label>
+                                <select asp-for="Status" class="form-control" required>
+                                    <option>Processing</option>
+                                    <option>Approved</option>
+                                    <option>Declined</option>
+                                </select>
+                                <span asp-validation-for="Status" class="text-danger"></span>
+                            </div>
+                            <div class="form-group">
+                                <input type="submit" value="Create" class="btn btn-primary" />
+                            </div>
+                        </form>
+                    </div>
+                </div>
             </div>
-            <div class="form-group">
-                <label asp-for="RecipentIBAN" class="control-label"></label>
-                <input asp-for="RecipentIBAN" class="form-control" required />
-                <span asp-validation-for="RecipentIBAN" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Amount" class="control-label"></label>
-                <input asp-for="Amount" class="form-control" required />
-                <span asp-validation-for="Amount" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="TransactionTime" class="control-label"></label>
-                <input asp-for="TransactionTime" class="form-control" required />
-                <span asp-validation-for="TransactionTime" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Status" class="control-label"></label>
-                <select asp-for="Status" class="form-control" required>
-                    <option>Processing</option>
-                    <option>Approved</option>
-                    <option>Declined</option>
-                </select>
-                <span asp-validation-for="Status" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <input type="submit" value="Create" class="btn btn-primary" />
-            </div>
-        </form>
+        </div>
+        <div>
+            <a asp-action="Index">Back to List</a>
+        </div>
+        <div style="position: absolute; bottom: 65px; z-index: -1;">
+            <img src="~/img/transaction/transaction_translucent_advanced.png" width="1110">
+        </div>
     </div>
-</div>
-
-<div>
-    <a asp-action="Index">Back to List</a>
-</div>
-
-@section Scripts {
-    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
-}
+</body>
+</html>

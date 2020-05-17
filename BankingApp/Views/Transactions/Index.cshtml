@@ -4,56 +4,73 @@
     ViewData["Title"] = "Index";
 }
 
-<h1>Index</h1>
-
-<p>
-    <a asp-action="Create">Create New</a>
-</p>
-<table class="table">
-    <thead>
-        <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.SenderIBAN)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.RecipentIBAN)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Amount)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.TransactionTime)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Status)
-            </th>
-            <th></th>
-        </tr>
-    </thead>
-    <tbody>
-@foreach (var item in Model) {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.SenderIBAN)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.RecipentIBAN)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Amount)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.TransactionTime)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Status)
-            </td>
-            <td>
-                <a asp-action="Edit" asp-route-id="@item.TransactionID">Edit</a> |
-                <a asp-action="Details" asp-route-id="@item.TransactionID">Details</a> |
-                <a asp-action="Delete" asp-route-id="@item.TransactionID">Delete</a>
-            </td>
-        </tr>
-}
-    </tbody>
-</table>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - BankingApp</title>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/css/site.css" />
+</head>
+<body style="background-color: #CCDDF6; overflow-x: hidden;">
+    <div class="container-main">
+        <h1>Transaction Settings</h1>
+        <p>
+            <a asp-action="Create">Create New</a>
+        </p>
+        <table class="table" style="background-color: rgb(255,255,255,0.75);">
+            <thead>
+                <tr>
+                    <th>
+                        @Html.DisplayNameFor(model => model.SenderIBAN)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.RecipentIBAN)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Amount)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.TransactionTime)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Status)
+                    </th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.SenderIBAN)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.RecipentIBAN)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Amount)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.TransactionTime)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Status)
+                        </td>
+                        <td>
+                            <a asp-action="Edit" asp-route-id="@item.TransactionID">Edit</a> |
+                            <a asp-action="Details" asp-route-id="@item.TransactionID">Details</a> |
+                            <a asp-action="Delete" asp-route-id="@item.TransactionID">Delete</a>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+        <div style="position: absolute; bottom: 65px; z-index: -1;">
+            <img src="~/img/transaction/transaction_translucent_advanced.png" width="1110">
+        </div>
+    </div>
+</body>
+</html>

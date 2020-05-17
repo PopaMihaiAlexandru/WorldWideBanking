@@ -3,37 +3,55 @@
 @{
     ViewData["Title"] = "Edit";
 }
-
-<h1>Edit</h1>
-
-<h4>Account</h4>
-<hr />
-<div class="row">
-    <div class="col-md-4">
-        <form asp-action="Edit">
-            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-            <input type="hidden" asp-for="AccountID" />
-            <div class="form-group">
-                <label asp-for="IBAN" class="control-label"></label>
-                <input asp-for="IBAN" class="form-control" />
-                <span asp-validation-for="IBAN" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Balance" class="control-label"></label>
-                <input asp-for="Balance" class="form-control" />
-                <span asp-validation-for="Balance" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <input type="submit" value="Save" class="btn btn-primary" />
-            </div>
-        </form>
-    </div>
-</div>
-
-<div>
-    <a asp-action="Index">Back to List</a>
-</div>
-
 @section Scripts {
     @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
 }
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - BankingApp</title>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/css/site.css" />
+</head>
+<body style="background-color: #CCDDF6; overflow-x: hidden;">
+    <div class="container-main">
+        <h1>Edit</h1>
+        <h4>Account</h4>
+        <div style="background-color: rgb(255,255,255,0.5);">
+            <div style="margin: 20px;">
+                <hr />
+                <div class="row">
+                    <div class="col-md-4">
+                        <form asp-action="Edit">
+                            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                            <input type="hidden" asp-for="AccountID" />
+                            <div class="form-group">
+                                <label asp-for="IBAN" class="control-label"></label>
+                                <input asp-for="IBAN" class="form-control" />
+                                <span asp-validation-for="IBAN" class="text-danger"></span>
+                            </div>
+                            <div class="form-group">
+                                <label asp-for="Balance" class="control-label"></label>
+                                <input asp-for="Balance" class="form-control" />
+                                <span asp-validation-for="Balance" class="text-danger"></span>
+                            </div>
+                            <div class="form-group">
+                                <input type="submit" value="Save" class="btn btn-primary" />
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div>
+            <a asp-action="Index">Back to List</a>
+        </div>
+        <div style="position: absolute; bottom: 65px; z-index: -1;">
+            <img src="~/img/account/account_translucent_advanced.png" width="1110">
+        </div>
+    </div>
+</body>
+</html>

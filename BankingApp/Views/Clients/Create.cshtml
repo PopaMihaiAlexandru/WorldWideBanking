@@ -3,76 +3,94 @@
 @{
     ViewData["Title"] = "Create";
 }
-
-<h1>Create</h1>
-
-<h4>Client</h4>
-<hr />
-<div class="row">
-    <div class="col-md-4">
-        <form asp-action="Create">
-            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-            <div class="form-group">
-                <label asp-for="Name" class="control-label"></label>
-                <input asp-for="Name" class="form-control" required/>
-                <span asp-validation-for="Name" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Surname" class="control-label"></label>
-                <input asp-for="Surname" class="form-control" required />
-                <span asp-validation-for="Surname" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Address" class="control-label"></label>
-                <input asp-for="Address" class="form-control" required />
-                <span asp-validation-for="Address" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="PostalCode" class="control-label"></label>
-                <input asp-for="PostalCode" class="form-control" required />
-                <span asp-validation-for="PostalCode" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="CNP" class="control-label"></label>
-                <input asp-for="CNP" class="form-control" required />
-                <span asp-validation-for="CNP" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Country" class="control-label"></label>
-                <input asp-for="Country" class="form-control" required />
-                <span asp-validation-for="Country" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="City" class="control-label"></label>
-                <input asp-for="City" class="form-control" required />
-                <span asp-validation-for="City" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="District" class="control-label"></label>
-                <input asp-for="District" class="form-control" />
-                <span asp-validation-for="District" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="PhoneNumber" class="control-label"></label>
-                <input asp-for="PhoneNumber" class="form-control" required />
-                <span asp-validation-for="PhoneNumber" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Mail" class="control-label"></label>
-                <input asp-for="Mail" class="form-control" required />
-                <span asp-validation-for="Mail" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <input type="submit" value="Create" class="btn btn-primary" />
-            </div>
-        </form>
-    </div>
-</div>
-
-<div>
-    <a asp-action="Index">Back to List</a>
-</div>
-
 @section Scripts {
     @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
 }
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - BankingApp</title>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/css/site.css" />
+</head>
+<body style="background-color: #CCDDF6; overflow-x: hidden;">
+    <div class="container-main">
+        <h1>Create</h1>
+        <h4>Client</h4>
+        <div style="background-color: rgb(255,255,255,0.5);">
+            <div style="margin: 20px;">
+                <hr />
+                <div class="row">
+                    <div class="col-md-4">
+                        <form asp-action="Create">
+                            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                            <div class="form-group">
+                                <label asp-for="Name" class="control-label"></label>
+                                <input asp-for="Name" class="form-control" required />
+                                <span asp-validation-for="Name" class="text-danger"></span>
+                            </div>
+                            <div class="form-group">
+                                <label asp-for="Surname" class="control-label"></label>
+                                <input asp-for="Surname" class="form-control" required />
+                                <span asp-validation-for="Surname" class="text-danger"></span>
+                            </div>
+                            <div class="form-group">
+                                <label asp-for="Address" class="control-label"></label>
+                                <input asp-for="Address" class="form-control" required />
+                                <span asp-validation-for="Address" class="text-danger"></span>
+                            </div>
+                            <div class="form-group">
+                                <label asp-for="PostalCode" class="control-label"></label>
+                                <input asp-for="PostalCode" class="form-control" required />
+                                <span asp-validation-for="PostalCode" class="text-danger"></span>
+                            </div>
+                            <div class="form-group">
+                                <label asp-for="CNP" class="control-label"></label>
+                                <input asp-for="CNP" class="form-control" required />
+                                <span asp-validation-for="CNP" class="text-danger"></span>
+                            </div>
+                            <div class="form-group">
+                                <label asp-for="Country" class="control-label"></label>
+                                <input asp-for="Country" class="form-control" required />
+                                <span asp-validation-for="Country" class="text-danger"></span>
+                            </div>
+                            <div class="form-group">
+                                <label asp-for="City" class="control-label"></label>
+                                <input asp-for="City" class="form-control" required />
+                                <span asp-validation-for="City" class="text-danger"></span>
+                            </div>
+                            <div class="form-group">
+                                <label asp-for="District" class="control-label"></label>
+                                <input asp-for="District" class="form-control" />
+                                <span asp-validation-for="District" class="text-danger"></span>
+                            </div>
+                            <div class="form-group">
+                                <label asp-for="PhoneNumber" class="control-label"></label>
+                                <input asp-for="PhoneNumber" class="form-control" required />
+                                <span asp-validation-for="PhoneNumber" class="text-danger"></span>
+                            </div>
+                            <div class="form-group">
+                                <label asp-for="Mail" class="control-label"></label>
+                                <input asp-for="Mail" class="form-control" required />
+                                <span asp-validation-for="Mail" class="text-danger"></span>
+                            </div>
+                            <div class="form-group">
+                                <input type="submit" value="Create" class="btn btn-primary" />
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div>
+            <a asp-action="Index">Back to List</a>
+        </div>
+        <div style="position: absolute; bottom: 65px; z-index: -1;">
+            <img src="~/img/client/client_translucent_advanced.png" width="1110">
+        </div>
+    </div>
+</body>
+</html>
