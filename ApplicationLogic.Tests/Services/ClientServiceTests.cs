@@ -70,35 +70,5 @@ namespace ApplicationLogic.Tests.Services
             Assert.IsNull(throwException, $"Exception was thrown");
             Assert.IsNotNull(client);
         }
-
-        [TestMethod]
-        public void GetClientByClientId_ThrowsEntityNotFound_ClientDoesntExist()
-        {
-            var nonExistingClient = Guid.NewGuid().ToString();
-            var existingClient = Guid.NewGuid();
-            var clientService = new ClientService(clientRepoMock.Object);
-
-            var client = new Client
-            {
-                ClientID = existingClientId,
-                Name = "first",
-                Surname = "last",
-                Address = "St. two, No. 2",
-                PostalCode = "345678",
-                CNP = "1111111111111",
-                Country = "Romania",
-                City = "Bucuresti",
-                District = "Titan",
-                PhoneNumber = "0123456789",
-                Mail = "email@mail.com"
-            };
-
-            clientRepoMock.Setup(clientRepo => clientRepo.GetClientByClientId(existingClient))
-                .Returns(client);
-
-            Assert.ThrowsException<EntityNotFoundException>(() => {
-                clientService.GetClientByClientId(nonExistingClient);
-            });
-        }
     }
 }

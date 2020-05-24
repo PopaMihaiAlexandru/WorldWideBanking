@@ -70,29 +70,5 @@ namespace ApplicationLogic.Tests.Services
             Assert.IsNotNull(card);
         }
 
-        [TestMethod]
-        public void GetCardByCardId_ThrowsEntityNotFound_CardDoesntExist()
-        {
-            var nonExistingCard = Guid.NewGuid().ToString();
-            var existingCard = Guid.NewGuid();
-            var cardService = new CardService(cardRepoMock.Object);
-
-            var card = new Card
-            {
-                CardID = existingCard,
-                OwnerName = "Alex",
-                SerialNumber = "1234",
-                ExpiryDate = DateTime.Today.AddYears(2),
-                CVV = "357",
-                Type = CardType.MasterCard
-            };
-
-            cardRepoMock.Setup(clientRepo => clientRepo.GetCardByCardId(existingCard))
-                .Returns(card);
-
-            Assert.ThrowsException<EntityNotFoundException>(() => {
-                cardService.GetCardByCardId(nonExistingCard);
-            });
-        }
     }
 }

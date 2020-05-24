@@ -66,30 +66,5 @@ namespace ApplicationLogic.Tests.Services
             Assert.IsNull(throwException, $"Exception was thrown");
             Assert.IsNotNull(account);
         }
-
-        [TestMethod]
-        public void GetAccountByAccountId_ThrowsEntityNotFound_AccountDoesntExist()
-        {
-            // Arrange
-            var nonExistingAccount = Guid.NewGuid().ToString();
-            var existingAccount = Guid.NewGuid();
-            var accountService = new AccountService(accountRepoMock.Object);
-
-            // Act 
-            var account = new Account
-            {
-                AccountID = existingAccount,
-                IBAN = "1111222233334444",
-                Balance = "1234"
-            };
-
-            accountRepoMock.Setup(clientRepo => clientRepo.GetAccountByAccountId(existingAccount))
-                .Returns(account);
-
-            // Assert
-            Assert.ThrowsException<EntityNotFoundException>(() => {
-                accountService.GetAccountByAccountId(nonExistingAccount);
-            });
-        }
     }
 }
