@@ -25,6 +25,57 @@
                     <h4>Create a new account.</h4>
                     <hr />
                     <div asp-validation-summary="All" class="text-danger"></div>
+                    <div class="form-row">
+                        <div class="form-group col-md-6">
+                            <label asp-for="Input.Name"></label>
+                            <input asp-for="Input.Name" class="form-control" />
+                            <span asp-validation-for="Input.Name" class="text-danger"></span>
+                        </div>
+                        <div class="form-group col-md-6 col-md-offset-2">
+                            <label asp-for="Input.Surname"></label>
+                            <input asp-for="Input.Surname" class="form-control" />
+                            <span asp-validation-for="Input.Surname" class="text-danger"></span>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="Input.CNP"></label>
+                        <input asp-for="Input.CNP" class="form-control" />
+                        <span asp-validation-for="Input.CNP" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="Input.Address"></label>
+                        <input asp-for="Input.Address" class="form-control" />
+                        <span asp-validation-for="Input.Address" class="text-danger"></span>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group col-md-6">
+                            <label asp-for="Input.Country"></label>
+                            <input asp-for="Input.Country" class="form-control" />
+                            <span asp-validation-for="Input.Country" class="text-danger"></span>
+                        </div>
+                        <div class="form-group col-md-6 col-md-offset-2">
+                            <label asp-for="Input.City"></label>
+                            <input asp-for="Input.City" class="form-control" />
+                            <span asp-validation-for="Input.City" class="text-danger"></span>
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group col-md-6">
+                            <label asp-for="Input.District"></label>
+                            <input asp-for="Input.District" class="form-control" />
+                            <span asp-validation-for="Input.District" class="text-danger"></span>
+                        </div>
+                        <div class="form-group col-md-6 col-md-offset-2">
+                            <label asp-for="Input.PostalCode"></label>
+                            <input asp-for="Input.PostalCode" class="form-control" />
+                            <span asp-validation-for="Input.PostalCode" class="text-danger"></span>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="Input.PhoneNumber"></label>
+                        <input asp-for="Input.PhoneNumber" class="form-control" />
+                        <span asp-validation-for="Input.PhoneNumber" class="text-danger"></span>
+                    </div>
                     <div class="form-group">
                         <label asp-for="Input.Email"></label>
                         <input asp-for="Input.Email" class="form-control" />
@@ -54,8 +105,6 @@
                 </section>
             </div>
         </div>
-        <br /><br /><br /><br /><br /><br /><br />
-        <br /><br /><br /><br /><br /><br /><br />
         <div style="position: absolute; bottom: 50px; z-index: -1;">
             <img src="~/img/register/register_translucent_advanced.png" width="1110">
         </div>
